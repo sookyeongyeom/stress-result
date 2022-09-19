@@ -33,6 +33,13 @@
 			.absolute {
 				position: absolute;
 			}
+			.underline {
+				text-decoration: underline;
+				text-underline-position: under;
+			}
+			.bold500 {
+				font-weight: 500;
+			}
 			/* *************************** Page1 ************************** */
 			.page1_gray_bg {
 				left: 6mm;
@@ -94,6 +101,10 @@
 				padding-right: 1rem;
 			}
 			/* *************************** Page2 ************************** */
+			.page2 {
+				padding: 4rem 0;
+				padding-bottom: 2rem;
+			}
 			.page2_navy_bg {
 				width: 101%;
 				top: -1mm;
@@ -104,15 +115,16 @@
 				bottom: -1mm;
 			}
 			.page2_content {
-				margin: 5rem 0;
+				/* margin: 4rem 0; */
 				padding: 0 2rem;
 			}
 			#graph {
 				width: 100%;
-				height: 75mm;
+				height: 65mm;
 				border: 1px solid #ddd;
 				display: flex;
 				flex-direction: column;
+				margin: 3mm 0;
 			}
 			#graph_header {
 				text-align: center;
@@ -140,7 +152,6 @@
 				flex-grow: 1;
 				margin-left: 1mm;
 				margin-right: 5mm;
-				/* margin-bottom: 2mm; */
 				text-align: center;
 			}
 			#graph_chart > div {
@@ -170,6 +181,36 @@
 			}
 			.graph_walk #graph_bar {
 				background-color: rgb(249, 221, 93);
+			}
+			.graph_caption {
+				background-color: rgb(212, 223, 252);
+				padding: 3mm 10mm;
+				padding-bottom: 2mm;
+				line-height: 6.5mm;
+				font-size: 11pt;
+				color: rgb(63, 63, 63);
+				letter-spacing: 0.05rem;
+			}
+			.page2 table {
+				border-collapse: collapse;
+				border: 1.5px solid gray;
+				border-left: 0;
+				border-right: 0;
+				width: 100%;
+				margin-bottom: 3mm;
+			}
+			.page2 th,
+			.page2 td {
+				border-right: 1px solid gray;
+				text-align: center;
+				padding: 3mm;
+				padding-top: 4mm;
+			}
+			.page2 td:last-child {
+				border: none;
+			}
+			.page2 th {
+				background-color: #eee;
 			}
 
 			/* *************************** Media ************************** */
@@ -244,7 +285,7 @@
 						<td>%GENDER%</td>
 					</tr>
 					<tr>
-						<th style="letter-spacing: 0.04rem">실시기간</th>
+						<th style="letter-spacing: 0.04rem; padding-left: 0.15rem">실시기간</th>
 						<td>%START DATE% ~ %END DATE%</td>
 					</tr>
 				</table>
@@ -253,7 +294,7 @@
 		<!-- ************************************************************ -->
 		<!-- *************************** Page2 ************************** -->
 		<!-- ************************************************************ -->
-		<div class="page_container">
+		<div class="page_container page2">
 			<div id="background">
 				<!-- **************** 배경 **************** -->
 				<img
@@ -269,7 +310,23 @@
 			</div>
 			<!-- **************** 내용 **************** -->
 			<div id="content" class="page2_content">
+				<table>
+					<tr>
+						<th>이름</th>
+						<td>%NAME%</td>
+						<th>성별</th>
+						<td>%GENDER%</td>
+						<th>실시기간</th>
+						<td>%START DATE% ~ %END DATE%</td>
+					</tr>
+				</table>
 				<!-- **************** 신체활동시간 리포트 **************** -->
+				<div class="graph_caption">
+					• <span class="underline bold500">중고강도 신체활동 시간이란,</span> 하루 중 밤 시간의
+					수면시간을 제외한 '상당히 활동적인 시간'과
+					<br />
+					&ensp;&ensp;'매우 활동적인 시간'을 모두 합한 시간입니다.
+				</div>
 				<div id="graph" class="graph_exercise">
 					<div id="graph_header">일일 중·고강도 신체활동시간 리포트</div>
 					<div id="graph_main">
@@ -280,6 +337,10 @@
 					</div>
 				</div>
 				<!-- **************** 수면시간 리포트 **************** -->
+				<div class="graph_caption">
+					• <span class="underline bold500">수면시간</span>은 하루 중 밤 시간의 '전체
+					수면시간'(얕은수면+깊은수면+렘수면)입니다.
+				</div>
 				<div id="graph" class="graph_sleep">
 					<div id="graph_header">일일 수면시간 리포트</div>
 					<div id="graph_main">
@@ -290,6 +351,10 @@
 					</div>
 				</div>
 				<!-- **************** 걸음수 리포트 **************** -->
+				<div class="graph_caption">
+					• <span class="underline bold500">걸음 수</span>는 하루 동안의 총 걸음 수(Step)를
+					의미합니다.
+				</div>
 				<div id="graph" class="graph_walk">
 					<div id="graph_header">일일 걸음 수 리포트</div>
 					<div id="graph_main">
@@ -423,7 +488,7 @@
 			// graph_chart innerHTML 생성
 			let graphChart = [];
 			reportData.map((dayReport) => {
-				const barHeight = (dayReport.size / largest) * 11;
+				const barHeight = (dayReport.size / largest) * 9;
 				const valueHtml = ['<div id="graph_value">', `${dayReport.size}`, '</div>'];
 				const barHtml = [`<div id="graph_bar" style="height:${barHeight}rem"></div>`];
 				const xHtml = [`<div id="graph_x">${dayReport.day}일차</div>`];
