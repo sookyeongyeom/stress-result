@@ -212,7 +212,153 @@
 			.page2 th {
 				background-color: #eee;
 			}
-
+			/* *************************** Page3 ************************** */
+			.page3 {
+				padding: 3rem 0;
+				padding-bottom: 2rem;
+			}
+			.page3_content {
+				padding: 0 2rem;
+			}
+			.chart {
+				background-color: #ccc;
+				width: 35mm;
+				height: 35mm;
+				border-radius: 50%;
+				position: relative;
+				margin: 0 auto;
+				margin-top: 3rem;
+				position: relative;
+				top: 0.5rem;
+				z-index: -1;
+			}
+			.chart::after {
+				content: '';
+				background-color: #ffffff;
+				width: 23mm;
+				height: 23mm;
+				border-radius: 50%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			.chart_bar {
+				width: inherit;
+				height: inherit;
+				border-radius: 50%;
+				background: conic-gradient(
+					#9acc86 35deg,
+					#f48379 35deg,
+					#f48379 180deg,
+					#fcf084 180deg,
+					#fcf084 325deg,
+					#9acc86 325deg
+				);
+			}
+			.chart_hidden {
+				width: inherit;
+				height: 15mm;
+				background-color: #ffffff;
+				position: absolute;
+				bottom: 0;
+			}
+			.chart_pin {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, 22%);
+			}
+			.chart_pin img {
+				width: 2.5rem;
+			}
+			.page3 h2 {
+				background-color: rgb(248, 208, 132);
+				text-align: center;
+				padding: 3mm;
+				padding-top: 4mm;
+			}
+			.report_caution {
+				background-color: rgb(212, 223, 252);
+				padding: 5mm;
+				letter-spacing: 0.05rem;
+				line-height: 1.6rem;
+				margin-top: 14mm;
+			}
+			.page3 table {
+				border-collapse: collapse;
+				text-align: center;
+				width: 100%;
+			}
+			.page3 td {
+				width: 20rem;
+			}
+			.page3 th {
+				white-space: nowrap;
+				padding: 5mm;
+				line-height: 1.5rem;
+			}
+			.page3 tr:first-child {
+				border-bottom: 2px solid #ddd;
+			}
+			.page3 tr:first-child th {
+				font-size: 10pt;
+			}
+			.page3 tr:first-child td {
+				position: relative;
+			}
+			.page3 tr {
+				border-bottom: 1px solid #ddd;
+			}
+			.page3 tr:nth-child(2) {
+				font-weight: 700;
+			}
+			.page3 tr:nth-child(2) td {
+				padding: 3mm;
+				line-height: 1.5rem;
+			}
+			.page3 tr:nth-child(2) td:nth-child(even) {
+				background-color: rgb(212, 223, 252);
+			}
+			.page3 tr:nth-child(3) td:nth-child(odd) {
+				background-color: rgb(247, 247, 247);
+			}
+			.page3 tr:last-child td {
+				text-align: left;
+				padding: 5mm;
+				word-break: keep-all;
+				line-height: 1.5rem;
+			}
+			.page3 tr:last-child td:nth-child(even) {
+				background-color: rgb(247, 247, 247);
+			}
+			.under {
+				width: 2mm;
+				height: 2mm;
+				background-color: #fcf084;
+			}
+			.exact {
+				width: 2mm;
+				height: 2mm;
+				background-color: #9acc86;
+			}
+			.over {
+				width: 2mm;
+				height: 2mm;
+				background-color: #f48379;
+			}
+			.state {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 9pt;
+				position: absolute;
+				top: 1mm;
+				right: 1mm;
+			}
+			.state > div {
+				margin-right: 0.5rem;
+			}
 			/* *************************** Media ************************** */
 			@page {
 				size: A4;
@@ -363,6 +509,109 @@
 						</div>
 						<div id="graph_chart"></div>
 					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page3 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container page3">
+			<div id="background">
+				<!-- **************** 배경 **************** -->
+				<img
+					class="width100 absolute page2_navy_bg"
+					src="./page2/page2_남색상단.png"
+					alt="남색상단"
+				/>
+				<img
+					class="width100 absolute page2_gray_bg"
+					src="./page2/page2_회색하단.png"
+					alt="회색하단"
+				/>
+			</div>
+			<div id="content" class="page3_content">
+				<h2>7일 종합 리포트</h2>
+				<table>
+					<tr>
+						<th>7일 평균</th>
+						<td>
+							<div class="chart">
+								<div class="chart_bar"></div>
+								<div class="chart_hidden"></div>
+							</div>
+							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
+						</td>
+						<td>
+							<div class="chart">
+								<div class="chart_bar"></div>
+								<div class="chart_hidden"></div>
+							</div>
+							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
+						</td>
+						<td>
+							<div class="chart">
+								<div class="chart_bar"></div>
+								<div class="chart_hidden"></div>
+							</div>
+							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
+							<div class="state">
+								<div class="under"></div>
+								<div>부족</div>
+								<div class="exact"></div>
+								<div>적정</div>
+								<div class="over"></div>
+								<div>과다</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>중·고강도<br />신체활동시간</td>
+						<td>수면시간</td>
+						<td>걸음 수</td>
+					</tr>
+					<tr>
+						<th>충족<br />여부</th>
+						<td>%충족/미충족%</td>
+						<td>%충족/미충족%</td>
+						<td>%충족/미충족%</td>
+					</tr>
+					<tr>
+						<th>기준</th>
+						<td>
+							<p>WHO 권장<br />중·고강도 신체활동시간:<br />1일 평균 60분</p>
+							<p>2020 WHO<br />(Guidelines on physical activity)</p>
+						</td>
+						<td>
+							<p>미국 국립수면재단 권장 취학아동 (6-13세)<br />적정 수면시간: 9-11시간</p>
+							<p>미국 국립수면재단 (National Sleep Foundation)</p>
+						</td>
+						<td>
+							<p>
+								미국 페닝턴<br />바이오메디컬<br />리서치센터 제시<br />만 6-11세 걸음 기준:<br />남아
+								12,000걸음,<br />여아 10,000걸음
+							</p>
+							<p>Pennington Biomedical Research Center - Walking Behavior Laboratory</p>
+						</td>
+					</tr>
+				</table>
+				<div class="report_caution">
+					※
+					<span class="underline bold500" style="display: inline-block; margin-bottom: 0.3rem"
+						>리포트 확인 시 주의사항</span
+					>
+					<br />
+					&emsp;본 연구를 통해 제공되는 결과값은 Fitbit 기기를 통하여 수집된
+					<br />
+					&emsp;데이터를 기반으로 제공되며 Fitbit 서비스를 통하여 수집, 제시된 데이터의 정확도는
+					의료장치
+					<br />
+					&emsp;또는 과학 측정 장치 수준의 정확도와 일치하도록 의도된 것은 아닙니다. 본 리포트에
+					제시된
+					<br />
+					&emsp;결과는 의료목적의 진단 기준으로 활용될 수 없으며 보다 정확한 진단과 상담을 원하시면
+					<br />
+					&emsp;관련 전문기관을 방문하여 상담 받으시는 것을 추천 드립니다
 				</div>
 			</div>
 		</div>
