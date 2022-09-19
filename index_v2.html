@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>스마트워치 일일리포트</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				margin: 0;
+			}
+			.page_container {
+				width: 210mm;
+				min-height: 297mm;
+				margin: 10mm auto;
+				overflow: hidden;
+				position: relative;
+				box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.3);
+			}
+			#background img {
+				z-index: -30;
+			}
+			#content {
+				z-index: 30;
+			}
+			.width100 {
+				width: 100%;
+			}
+			.absolute {
+				position: absolute;
+			}
+			.underline {
+				text-decoration: underline;
+				text-underline-position: under;
+			}
+			.bold500 {
+				font-weight: 500;
+			}
+			/* *************************** Page1 ************************** */
+			.page1_gray_bg {
+				left: 6mm;
+				top: -2mm;
+			}
+			.page1_navy_bg {
+				/* opacity: 0.9; */
+				width: 110%;
+				left: -7mm;
+				top: -11mm;
+			}
+			.page1_navy_deco {
+				left: 5.7mm;
+				top: -3.5mm;
+			}
+			.page1_logo {
+				width: 45%;
+				bottom: 70mm;
+				left: -2mm;
+			}
+			.page1_navy_bottom {
+				width: 105%;
+				left: -1mm;
+				bottom: -1mm;
+			}
+			.page1_header {
+				display: flex;
+				align-items: center;
+				margin-top: 48mm;
+				margin-left: 23mm;
+			}
+			.page1_header img {
+				width: 3mm;
+				height: 25mm;
+				position: relative;
+				top: -2mm;
+			}
+			.page1 h1 {
+				color: #ffffff;
+				font-size: 28pt;
+				padding-left: 7mm;
+				line-height: 3.8rem;
+				/* border-left: 8px solid #ffffff; */
+			}
+			.page1_profile {
+				right: -1mm;
+				bottom: 20mm;
+				width: 120mm;
+				height: 50mm;
+				font-size: 14pt;
+				border-collapse: collapse;
+			}
+			.page1_profile tr:first-child {
+				border-top: 1px solid black;
+				border-bottom: 1px solid black;
+			}
+			.page1_profile th {
+				width: 30%;
+				padding-right: 1rem;
+			}
+			/* *************************** Page2 ************************** */
+			.page2 {
+				padding: 4rem 0;
+				padding-bottom: 2rem;
+			}
+			.page2_navy_bg {
+				width: 101%;
+				top: -1mm;
+			}
+			.page2_gray_bg {
+				width: 105%;
+				left: -1mm;
+				bottom: -1mm;
+			}
+			.page2_content {
+				/* margin: 4rem 0; */
+				padding: 0 2rem;
+			}
+			#graph {
+				width: 100%;
+				height: 65mm;
+				border: 1px solid #ddd;
+				display: flex;
+				flex-direction: column;
+				margin: 3mm 0;
+			}
+			#graph_header {
+				text-align: center;
+				font-weight: 500;
+				padding: 3mm 0;
+				/* background-color: #eee; */
+			}
+			#graph_main {
+				display: flex;
+				flex-grow: 1;
+				font-size: 9pt;
+			}
+			#graph_y {
+				display: flex;
+				flex-direction: column-reverse;
+				margin: 0 3mm;
+				margin-top: 4.5mm;
+				margin-bottom: 8.1mm;
+				justify-content: space-between;
+				align-items: center;
+			}
+			#graph_chart {
+				display: flex;
+				align-items: flex-end;
+				flex-grow: 1;
+				margin-left: 1mm;
+				margin-right: 5mm;
+				text-align: center;
+			}
+			#graph_chart > div {
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			#graph_x {
+				padding: 3.1mm 0;
+				border-top: 1px solid #eee;
+				width: 100%;
+				letter-spacing: 0.05rem;
+			}
+			#graph_bar {
+				height: 11rem;
+				width: 9mm;
+			}
+			#graph_value {
+				margin-bottom: 2mm;
+			}
+			.graph_exercise #graph_bar {
+				background-color: rgb(72, 108, 199);
+			}
+			.graph_sleep #graph_bar {
+				background-color: rgb(235, 155, 75);
+			}
+			.graph_walk #graph_bar {
+				background-color: rgb(249, 221, 93);
+			}
+			.graph_caption {
+				background-color: rgb(212, 223, 252);
+				padding: 3mm 10mm;
+				padding-bottom: 2mm;
+				line-height: 6.5mm;
+				font-size: 11pt;
+				color: rgb(63, 63, 63);
+				letter-spacing: 0.05rem;
+			}
+			.page2 table {
+				border-collapse: collapse;
+				border: 1.5px solid gray;
+				border-left: 0;
+				border-right: 0;
+				width: 100%;
+				margin-bottom: 3mm;
+			}
+			.page2 th,
+			.page2 td {
+				border-right: 1px solid gray;
+				text-align: center;
+				padding: 3mm;
+				padding-top: 4mm;
+			}
+			.page2 td:last-child {
+				border: none;
+			}
+			.page2 th {
+				background-color: #eee;
+			}
+			/* *************************** Page3 ************************** */
+			.page3 {
+				padding: 3rem 0;
+				padding-bottom: 2rem;
+			}
+			.page3_content {
+				padding: 0 2rem;
+			}
+			.chart {
+				background-color: #ccc;
+				width: 35mm;
+				height: 35mm;
+				border-radius: 50%;
+				position: relative;
+				margin: 0 auto;
+				margin-top: 3rem;
+				position: relative;
+				top: 0.5rem;
+				z-index: -1;
+			}
+			.chart::after {
+				content: '';
+				background-color: #ffffff;
+				width: 23mm;
+				height: 23mm;
+				border-radius: 50%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			.chart_bar {
+				width: inherit;
+				height: inherit;
+				border-radius: 50%;
+				background: conic-gradient(
+					#9acc86 35deg,
+					#9acc86 180deg,
+					#f48379 180deg,
+					#f48379 360deg,
+					#9acc86 360deg
+				);
+			}
+			.chart_hidden {
+				width: inherit;
+				height: 15mm;
+				background-color: #ffffff;
+				position: absolute;
+				bottom: 0;
+			}
+			.chart_pin {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, 5%);
+			}
+			.chart_pin img {
+				/* width: 2.5rem; */
+				width: 3rem;
+				transform-origin: center 33px;
+			}
+			.page3 h2 {
+				background-color: rgb(248, 208, 132);
+				text-align: center;
+				padding: 3mm;
+				padding-top: 4mm;
+			}
+			.report_caution {
+				background-color: rgb(212, 223, 252);
+				padding: 5mm;
+				letter-spacing: 0.05rem;
+				line-height: 1.6rem;
+				margin-top: 14mm;
+			}
+			.page3 table {
+				border-collapse: collapse;
+				text-align: center;
+				width: 100%;
+			}
+			.page3 td {
+				width: 20rem;
+			}
+			.page3 th {
+				white-space: nowrap;
+				padding: 5mm;
+				line-height: 1.5rem;
+			}
+			.page3 tr:first-child {
+				border-bottom: 2px solid #ddd;
+			}
+			.page3 tr:first-child th {
+				font-size: 10pt;
+			}
+			.page3 tr:first-child td {
+				position: relative;
+			}
+			.page3 tr {
+				border-bottom: 1px solid #ddd;
+			}
+			.page3 tr:nth-child(2) {
+				font-weight: 700;
+			}
+			.page3 tr:nth-child(2) td {
+				padding: 3mm;
+				line-height: 1.5rem;
+			}
+			.page3 tr:nth-child(2) td:nth-child(even) {
+				background-color: rgb(212, 223, 252);
+			}
+			.page3 tr:nth-child(3) td:nth-child(odd) {
+				background-color: rgb(247, 247, 247);
+			}
+			.page3 tr:last-child td {
+				text-align: left;
+				padding: 5mm;
+				word-break: keep-all;
+				line-height: 1.5rem;
+			}
+			.page3 tr:last-child td:nth-child(even) {
+				background-color: rgb(247, 247, 247);
+			}
+			.under {
+				width: 2mm;
+				height: 2mm;
+				background-color: #f48379;
+			}
+			.exact {
+				width: 2mm;
+				height: 2mm;
+				background-color: #9acc86;
+			}
+			.state {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 9pt;
+				position: absolute;
+				top: 1mm;
+				right: 1mm;
+			}
+			.state > div {
+				margin-right: 0.5rem;
+			}
+			/* *************************** Page4 ************************** */
+			.page4 {
+				padding: 3rem 0;
+				padding-bottom: 2rem;
+			}
+			.page4_content {
+				padding: 0 2rem;
+			}
+			.page4 h2 {
+				background-color: rgb(212, 223, 252);
+				text-align: center;
+				padding: 3mm;
+				padding-top: 4mm;
+			}
+			.page4 h3 {
+				border-left: 6px solid rgb(212, 223, 252);
+				padding: 2mm 0 1mm 6mm;
+				margin-top: 2rem;
+			}
+			.page4 ol {
+				margin-top: 1.5rem;
+				margin-bottom: 3rem;
+			}
+			.page4 li {
+				font-weight: 600;
+			}
+			.page4 li > p {
+				font-weight: normal;
+				line-height: 1.5rem;
+				margin-top: 0.7rem;
+				margin-bottom: 2rem;
+			}
+			/* *************************** Media ************************** */
+			@page {
+				size: A4;
+				margin: 0;
+			}
+			@media print {
+				html,
+				body {
+					width: 210mm;
+					height: 297mm;
+				}
+				.page_container {
+					margin: 0;
+					/* 프린트 시 페이지 분리 */
+					page-break-after: always;
+					/* 프린트 시 백그라운드 색상 적용 */
+					-webkit-print-color-adjust: exact;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page1 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container page1">
+			<div id="background">
+				<!-- **************** 배경 **************** -->
+				<img
+					class="width100 absolute page1_gray_bg"
+					src="./page1/page1_회색배경.png"
+					alt="회색배경"
+				/>
+				<img
+					class="width100 absolute page1_navy_bg"
+					src="./page1/page1_남색배경.png"
+					alt="남색배경"
+				/>
+				<img
+					class="width100 absolute page1_navy_deco"
+					src="./page1/page1_남색무늬.png"
+					alt="남색무늬"
+				/>
+				<img class="absolute page1_logo" src="./page1/page1_로고.png" alt="남색무늬" />
+				<img
+					class="width100 absolute page1_navy_bottom"
+					src="./page1/page1_남색하단.png"
+					alt="남색하단"
+				/>
+			</div>
+			<!-- **************** 내용 **************** -->
+			<div class="content">
+				<div class="page1_header">
+					<img src="./page1/page1_border.png" alt="border" />
+					<h1>
+						2022 ADDS Yonsei<br /><span style="letter-spacing: 0.2rem">스마트워치 리포트</span>
+					</h1>
+				</div>
+				<table class="page1_profile absolute">
+					<tr>
+						<th>이&emsp;&ensp;&nbsp;름</th>
+						<td id="profile_name">%NAME%</td>
+					</tr>
+					<tr>
+						<th>학&emsp;&ensp;&nbsp;교</th>
+						<td id="profile_school">%SCHOOL%</td>
+					</tr>
+					<tr>
+						<th>성&emsp;&ensp;&nbsp;별</th>
+						<td id="profile_gender">%GENDER%</td>
+					</tr>
+					<tr>
+						<th style="letter-spacing: 0.04rem; padding-left: 0.15rem">실시기간</th>
+						<td id="profile_date">%START DATE% ~ %END DATE%</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page2 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container page2">
+			<div id="background">
+				<!-- **************** 배경 **************** -->
+				<img
+					class="width100 absolute page2_navy_bg"
+					src="./page2/page2_남색상단.png"
+					alt="남색상단"
+				/>
+				<img
+					class="width100 absolute page2_gray_bg"
+					src="./page2/page2_회색하단.png"
+					alt="회색하단"
+				/>
+			</div>
+			<!-- **************** 내용 **************** -->
+			<div id="content" class="page2_content">
+				<table>
+					<tr>
+						<th>이름</th>
+						<td id="profile_name">%NAME%</td>
+						<th>성별</th>
+						<td id="profile_gender">%GENDER%</td>
+						<th>실시기간</th>
+						<td id="profile_date">%START DATE% ~ %END DATE%</td>
+					</tr>
+				</table>
+				<!-- **************** 신체활동시간 리포트 **************** -->
+				<div class="graph_caption">
+					• <span class="underline bold500">중·고강도 신체활동 시간이란,</span> 하루 중 밤 시간의
+					수면시간을 제외한 '상당히 활동적인 시간'과
+					<br />
+					&ensp;&ensp;'매우 활동적인 시간'을 모두 합한 시간입니다.
+				</div>
+				<div id="graph" class="graph_exercise">
+					<div id="graph_header">일일 중·고강도 신체활동시간 리포트</div>
+					<div id="graph_main">
+						<div id="graph_y">
+							<div>5</div>
+						</div>
+						<div id="graph_chart"></div>
+					</div>
+				</div>
+				<!-- **************** 수면시간 리포트 **************** -->
+				<div class="graph_caption">
+					• <span class="underline bold500">수면시간</span>은 하루 중 밤 시간의 '전체
+					수면시간'(얕은수면+깊은수면+렘수면)입니다.
+				</div>
+				<div id="graph" class="graph_sleep">
+					<div id="graph_header">일일 수면시간 리포트</div>
+					<div id="graph_main">
+						<div id="graph_y">
+							<div>5</div>
+						</div>
+						<div id="graph_chart"></div>
+					</div>
+				</div>
+				<!-- **************** 걸음수 리포트 **************** -->
+				<div class="graph_caption">
+					• <span class="underline bold500">걸음 수</span>는 하루 동안의 총 걸음 수(Step)를
+					의미합니다.
+				</div>
+				<div id="graph" class="graph_walk">
+					<div id="graph_header">일일 걸음 수 리포트</div>
+					<div id="graph_main">
+						<div id="graph_y">
+							<div>5</div>
+						</div>
+						<div id="graph_chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page3 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container page3">
+			<div id="background">
+				<!-- **************** 배경 **************** -->
+				<img
+					class="width100 absolute page2_navy_bg"
+					src="./page2/page2_남색상단.png"
+					alt="남색상단"
+				/>
+				<img
+					class="width100 absolute page2_gray_bg"
+					src="./page2/page2_회색하단.png"
+					alt="회색하단"
+				/>
+			</div>
+			<div id="content" class="page3_content">
+				<h2>7일 종합 리포트</h2>
+				<table>
+					<tr>
+						<th>7일 평균</th>
+						<td id="chart_exercise">
+							<div class="chart">
+								<div class="chart_bar"></div>
+								<div class="chart_hidden"></div>
+							</div>
+							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
+						</td>
+						<td id="chart_sleep">
+							<div class="chart">
+								<div class="chart_bar"></div>
+								<div class="chart_hidden"></div>
+							</div>
+							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
+						</td>
+						<td id="chart_walk">
+							<div class="chart">
+								<div class="chart_bar"></div>
+								<div class="chart_hidden"></div>
+							</div>
+							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
+							<div class="state">
+								<div class="under"></div>
+								<div>미충족</div>
+								<div class="exact"></div>
+								<div>충족</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>중·고강도<br />신체활동시간</td>
+						<td>수면시간</td>
+						<td>걸음 수</td>
+					</tr>
+					<tr>
+						<th>충족<br />여부</th>
+						<td id="state_exercise">%충족/미충족%</td>
+						<td id="state_sleep">%충족/미충족%</td>
+						<td id="state_walk">%충족/미충족%</td>
+					</tr>
+					<tr>
+						<th>기준</th>
+						<td>
+							<p>WHO 권장<br />중·고강도 신체활동시간:<br />1일 평균 60분</p>
+							<p>2020 WHO<br />(Guidelines on physical activity)</p>
+						</td>
+						<td>
+							<p>미국 국립수면재단 권장 취학아동 (6-13세)<br />적정 수면시간: 9-11시간</p>
+							<p>미국 국립수면재단 (National Sleep Foundation)</p>
+						</td>
+						<td>
+							<p>
+								미국 페닝턴<br />바이오메디컬<br />리서치센터 제시<br />만 6-11세 걸음 기준:<br />남아
+								12,000걸음,<br />여아 10,000걸음
+							</p>
+							<p>Pennington Biomedical Research Center - Walking Behavior Laboratory</p>
+						</td>
+					</tr>
+				</table>
+				<div class="report_caution">
+					※
+					<span class="underline bold500" style="display: inline-block; margin-bottom: 0.3rem"
+						>리포트 확인 시 주의사항</span
+					>
+					<br />
+					&emsp;본 연구를 통해 제공되는 결과값은 Fitbit 기기를 통하여 수집된
+					<br />
+					&emsp;데이터를 기반으로 제공되며 Fitbit 서비스를 통하여 수집, 제시된 데이터의 정확도는
+					의료장치
+					<br />
+					&emsp;또는 과학 측정 장치 수준의 정확도와 일치하도록 의도된 것은 아닙니다. 본 리포트에
+					제시된
+					<br />
+					&emsp;결과는 의료목적의 진단 기준으로 활용될 수 없으며 보다 정확한 진단과 상담을 원하시면
+					<br />
+					&emsp;관련 전문기관을 방문하여 상담 받으시는 것을 추천 드립니다.
+				</div>
+			</div>
+		</div>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page4 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container page4">
+			<div id="background">
+				<!-- **************** 배경 **************** -->
+				<img
+					class="width100 absolute page2_navy_bg"
+					src="./page2/page2_남색상단.png"
+					alt="남색상단"
+				/>
+				<img
+					class="width100 absolute page2_gray_bg"
+					src="./page2/page2_회색하단.png"
+					alt="회색하단"
+				/>
+			</div>
+			<div id="content" class="page4_content">
+				<!-- **************** 배경 **************** -->
+				<h2>계산 기준</h2>
+				<h3>일일 리포트</h3>
+				<ol>
+					<li>
+						일일 중·고강도 신체활동시간 리포트
+						<p>
+							fitbit_export data&ensp;→&ensp;활동&ensp;→&ensp;'상당히 활동적인 시간(분) + 매우
+							활동적인 시간(분)'
+							<br />
+							→&ensp;'시간' 단위로 환산하여 일별 제시
+						</p>
+					</li>
+					<li>
+						일일 수면시간 리포트
+						<p>
+							fitbit_export data&ensp;→&ensp;수면&ensp;→&ensp;'수면시간(분)'&ensp;→&ensp;'시간'
+							단위로 환산하여 일별 제시
+						</p>
+					</li>
+					<li>
+						일일 걸음 수 리포트
+						<p>fitbit_export data&ensp;→&ensp;활동&ensp;→&ensp;'걸음 수' 일별 제시</p>
+					</li>
+				</ol>
+				<h3>7월 종합 리포트 (7일 평균<span style="color: rgb(244, 64, 64)">*</span>)</h3>
+				<ol>
+					<li>
+						중·고강도 신체활동시간 충족 여부
+						<p>
+							60분 이상&ensp;=&ensp;충족<br />
+							60분 미만&ensp;=&ensp;미충족
+						</p>
+					</li>
+					<li>
+						수면시간 충족 여부
+						<p>
+							9시간 이상&ensp;=&ensp;충족<br />
+							9시간 미만&ensp;=&ensp;미충족
+						</p>
+					</li>
+					<li>
+						걸음 수 충족 여부
+						<p>
+							<span class="underline bold500">남아</span><br />
+							12,000 걸음 이상&ensp;=&ensp;충족<br />
+							12,000 걸음 미만&ensp;=&ensp;미충족<br />
+							<span class="underline bold500" style="display: block; margin-top: 0.5rem"
+								>여아<br
+							/></span>
+							10,000 걸음 이상&ensp;=&ensp;충족<br />
+							10,000 걸음 미만&ensp;=&ensp;미충족<br />
+						</p>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</body>
+	<script>
+		const profileData = {
+			name: '김파이',
+			school: '연세초등학교',
+			gender: '여아',
+			date: '2022.01.31 ~ 2022.09.20',
+		};
+		const exerciseReport = [
+			{
+				day: 1,
+				size: 0,
+			},
+			{
+				day: 2,
+				size: 1.2,
+			},
+			{
+				day: 3,
+				size: 6,
+			},
+			{
+				day: 4,
+				size: 4.5,
+			},
+			{
+				day: 5,
+				size: 3.5,
+			},
+			{
+				day: 6,
+				size: 2,
+			},
+			{
+				day: 7,
+				size: 0.5,
+			},
+		];
+		const sleepReport = [
+			{
+				day: 1,
+				size: 0,
+			},
+			{
+				day: 2,
+				size: 6.75,
+			},
+			{
+				day: 3,
+				size: 7.35,
+			},
+			{
+				day: 4,
+				size: 6.65,
+			},
+			{
+				day: 5,
+				size: 7.7,
+			},
+			{
+				day: 6,
+				size: 6.53,
+			},
+			{
+				day: 7,
+				size: 6.51,
+			},
+		];
+		const walkReport = [
+			{
+				day: 1,
+				size: 25000,
+			},
+			{
+				day: 2,
+				size: 9521,
+			},
+			{
+				day: 3,
+				size: 8362,
+			},
+			{
+				day: 4,
+				size: 5043,
+			},
+			{
+				day: 5,
+				size: 20814,
+			},
+			{
+				day: 6,
+				size: 11394,
+			},
+			{
+				day: 7,
+				size: 10044,
+			},
+		];
+
+		function renderProfile(profileData) {
+			Array.from(document.querySelectorAll('#profile_name')).map(
+				(v) => (v.innerHTML = profileData.name),
+			);
+			Array.from(document.querySelectorAll('#profile_school')).map(
+				(v) => (v.innerHTML = profileData.school),
+			);
+			Array.from(document.querySelectorAll('#profile_gender')).map(
+				(v) => (v.innerHTML = profileData.gender),
+			);
+			Array.from(document.querySelectorAll('#profile_date')).map(
+				(v) => (v.innerHTML = profileData.date),
+			);
+		}
+		function renderGraph(reportData, targetChart, profileData) {
+			// 제일 긴 시간 찾기
+			let deepCopy = [...reportData];
+			deepCopy.sort((a, b) => b.size - a.size);
+			// 올림
+			let largest = Math.ceil(deepCopy[0].size);
+			// 일일 걸음 수 리포트는 5000 단위로 계산
+			if (reportData == walkReport) largest = Math.ceil(largest / 5000) * 5000;
+
+			// graph_y innerHTML 생성
+			let graphY = ['<div>0</div>'];
+			// 일일 걸음 수 리포트
+			if (reportData == walkReport) {
+				Array(largest / 5000)
+					.fill(0)
+					.map((v, i) => {
+						graphY.push(['<div>', `${(i + 1) * 5000}`, '</div>'].join(''));
+					});
+			} else {
+				Array(largest)
+					.fill(0)
+					.map((v, i) => {
+						graphY.push(['<div>', `${i + 1}`, '</div>'].join(''));
+					});
+			}
+			document.querySelector(`.${targetChart} #graph_y`).innerHTML = graphY.join('');
+
+			// graph_chart innerHTML 생성
+			let graphChart = [];
+			reportData.map((dayReport) => {
+				const barHeight = (dayReport.size / largest) * 9;
+				const valueHtml = ['<div id="graph_value">', `${dayReport.size}`, '</div>'];
+				const barHtml = [`<div id="graph_bar" style="height:${barHeight}rem"></div>`];
+				const xHtml = [`<div id="graph_x">${dayReport.day}일차</div>`];
+				graphChart.push(['<div>', ...valueHtml, ...barHtml, ...xHtml, '</div>'].join(''));
+			});
+			console.log(graphChart);
+			document.querySelector(`.${targetChart} #graph_chart`).innerHTML = graphChart.join('');
+		}
+		function renderChart(reportData, targetChart) {
+			const total = reportData.reduce((acc, cur, idx) => (acc += cur.size), 0);
+			const average = total / reportData.length;
+
+			let state;
+
+			if (reportData == exerciseReport) {
+				if (average >= 1) state = 'exact';
+				else state = 'less';
+			}
+			if (reportData == sleepReport) {
+				if (average >= 9) state = 'exact';
+				else state = 'less';
+			}
+			if (reportData == walkReport) {
+				// 성별에 따라 기준 상이
+				if (profileData.gender === '남아')
+					if (average >= 12000) state = 'exact';
+					else state = 'less';
+				if (profileData.gender === '여아')
+					if (average >= 10000) state = 'exact';
+					else state = 'less';
+			}
+
+			// 게이지 렌더링
+			const deg = {
+				less: '-43deg',
+				exact: '43deg',
+			};
+			document.querySelector(
+				`#${targetChart} > .chart_pin > img`,
+			).style.transform = `rotate(${deg[state]})`;
+
+			// 충족 여부 렌더링
+			const status = {
+				less: '미충족',
+				exact: '충족',
+			};
+			document.querySelector(`#state_${targetChart.split('_')[1]}`).innerHTML = status[state];
+
+			console.log(average + ' ' + state);
+		}
+
+		renderProfile(profileData);
+		renderGraph(exerciseReport, 'graph_exercise');
+		renderGraph(sleepReport, 'graph_sleep');
+		renderGraph(walkReport, 'graph_walk');
+		renderChart(exerciseReport, 'chart_exercise');
+		renderChart(sleepReport, 'chart_sleep');
+		renderChart(walkReport, 'chart_walk', profileData);
+	</script>
+</html>
