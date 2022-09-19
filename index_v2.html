@@ -139,12 +139,13 @@
 			}
 			#graph_y {
 				display: flex;
-				flex-direction: column-reverse;
+				flex-direction: column;
 				margin: 0 3mm;
 				margin-top: 4.5mm;
 				margin-bottom: 8.1mm;
 				justify-content: space-between;
 				align-items: center;
+				height: 157.36px;
 			}
 			#graph_chart {
 				display: flex;
@@ -854,7 +855,11 @@
 						graphY.push(['<div>', `${i + 1}`, '</div>'].join(''));
 					});
 			}
-			document.querySelector(`.${targetChart} #graph_y`).innerHTML = graphY.join('');
+			if (graphY.length > 11) {
+				const shorten = ['<div>0</div>', '<div>...</div>', ...graphY.slice(-8)];
+				graphY = [...shorten];
+			}
+			document.querySelector(`.${targetChart} #graph_y`).innerHTML = graphY.reverse().join('');
 
 			// graph_chart innerHTML 생성
 			let graphChart = [];
