@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>스마트워치 일일리포트</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				margin: 0;
+			}
+			.page_container {
+				width: 210mm;
+				min-height: 297mm;
+				margin: 10mm auto;
+				overflow: hidden;
+				position: relative;
+				box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.3);
+			}
+			#background img {
+				z-index: -30;
+			}
+			#content {
+				z-index: 30;
+			}
+			.width100 {
+				width: 100%;
+			}
+			.absolute {
+				position: absolute;
+			}
+			/* *************************** Page1 ************************** */
+			.page1_gray_bg {
+				left: 6mm;
+				top: -2mm;
+			}
+			.page1_navy_bg {
+				/* opacity: 0.9; */
+				width: 110%;
+				left: -7mm;
+				top: -11mm;
+			}
+			.page1_navy_deco {
+				left: 5.7mm;
+				top: -3.5mm;
+			}
+			.page1_logo {
+				width: 45%;
+				bottom: 70mm;
+				left: -2mm;
+			}
+			.page1_navy_bottom {
+				width: 105%;
+				left: -1mm;
+				bottom: -1mm;
+			}
+			.page1_header {
+				display: flex;
+				align-items: center;
+				margin-top: 48mm;
+				margin-left: 23mm;
+			}
+			.page1_header img {
+				width: 3mm;
+				height: 25mm;
+				position: relative;
+				top: -2mm;
+			}
+			.page1 h1 {
+				color: #ffffff;
+				font-size: 28pt;
+				padding-left: 7mm;
+				line-height: 3.8rem;
+				/* border-left: 8px solid #ffffff; */
+			}
+			.page1_profile {
+				right: -1mm;
+				bottom: 20mm;
+				width: 120mm;
+				height: 50mm;
+				font-size: 14pt;
+				border-collapse: collapse;
+			}
+			.page1_profile tr:first-child {
+				border-top: 1px solid black;
+				border-bottom: 1px solid black;
+			}
+			.page1_profile th {
+				width: 30%;
+				padding-right: 1rem;
+			}
+			/* *************************** Page2 ************************** */
+			/* *************************** Media ************************** */
+			@page {
+				size: A4;
+				margin: 0;
+			}
+			@media print {
+				html,
+				body {
+					width: 210mm;
+					height: 297mm;
+				}
+				.page_container {
+					margin: 0;
+					/* 프린트 시 페이지 분리 */
+					page-break-after: always;
+					/* 프린트 시 백그라운드 색상 적용 */
+					-webkit-print-color-adjust: exact;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page1 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container page1">
+			<div id="background">
+				<!-- **************** 배경 **************** -->
+				<img
+					class="width100 absolute page1_gray_bg"
+					src="./page1/page1_회색배경.png"
+					alt="회색배경"
+				/>
+				<img
+					class="width100 absolute page1_navy_bg"
+					src="./page1/page1_남색배경.png"
+					alt="남색배경"
+				/>
+				<img
+					class="width100 absolute page1_navy_deco"
+					src="./page1/page1_남색무늬.png"
+					alt="남색무늬"
+				/>
+				<img class="absolute page1_logo" src="./page1/page1_로고.png" alt="남색무늬" />
+				<img
+					class="width100 absolute page1_navy_bottom"
+					src="./page1/page1_남색하단.png"
+					alt="남색하단"
+				/>
+			</div>
+			<!-- **************** 내용 **************** -->
+			<div class="content">
+				<div class="page1_header">
+					<img src="./page1/page1_border.png" alt="border" />
+					<h1>
+						2022 ADDS Yonsei<br /><span style="letter-spacing: 0.2rem">스마트워치 리포트</span>
+					</h1>
+				</div>
+				<table class="page1_profile absolute">
+					<tr>
+						<th>이&emsp;&ensp;&nbsp;름</th>
+						<td>%NAME%</td>
+					</tr>
+					<tr>
+						<th>학&emsp;&ensp;&nbsp;교</th>
+						<td>%SCHOOL%</td>
+					</tr>
+					<tr>
+						<th>성&emsp;&ensp;&nbsp;별</th>
+						<td>%GENDER%</td>
+					</tr>
+					<tr>
+						<th style="letter-spacing: 0.04rem">실시기간</th>
+						<td>%START DATE% ~ %END DATE%</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!-- ************************************************************ -->
+		<!-- *************************** Page2 ************************** -->
+		<!-- ************************************************************ -->
+		<div class="page_container" style="background-color: lightblue">두번째 페이지</div>
+	</body>
+</html>
