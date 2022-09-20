@@ -4,6 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
 		<title>스마트워치 일일리포트</title>
 		<style>
 			* {
@@ -12,6 +18,7 @@
 			html,
 			body {
 				margin: 0;
+				font-family: 'Noto Sans KR', sans-serif;
 			}
 			.page_container {
 				width: 210mm;
@@ -124,13 +131,13 @@
 				border: 1px solid #ddd;
 				display: flex;
 				flex-direction: column;
-				margin: 3mm 0;
+				margin: 2mm 0;
 			}
 			#graph_header {
 				text-align: center;
 				font-weight: 500;
 				padding: 3mm 0;
-				padding-bottom: 2mm;
+				padding-bottom: 1mm;
 				/* background-color: #eee; */
 			}
 			#graph_main {
@@ -142,11 +149,11 @@
 				display: flex;
 				flex-direction: column;
 				margin: 0 3mm;
-				margin-top: 4.5mm;
-				margin-bottom: 7.5mm;
+				margin-top: 4.4mm;
+				margin-bottom: 8.5mm;
 				justify-content: space-between;
 				align-items: center;
-				height: 162px;
+				align-self: stretch;
 			}
 			#graph_chart {
 				display: flex;
@@ -163,8 +170,8 @@
 				align-items: center;
 			}
 			#graph_x {
-				padding: 3.1mm 0;
-				padding-bottom: 2.5mm;
+				padding: 2.8mm 0;
+				padding-bottom: 2.9mm;
 				border-top: 1px solid #eee;
 				width: 100%;
 				letter-spacing: 0.05rem;
@@ -174,7 +181,7 @@
 				width: 9mm;
 			}
 			#graph_value {
-				margin-bottom: 2mm;
+				margin-bottom: 1.5mm;
 			}
 			.graph_exercise #graph_bar {
 				background-color: rgb(72, 108, 199);
@@ -188,9 +195,8 @@
 			.graph_caption {
 				background-color: rgb(212, 223, 252);
 				padding: 3mm 10mm;
-				padding-bottom: 2mm;
-				line-height: 6.5mm;
-				font-size: 11pt;
+				line-height: 6mm;
+				font-size: 10pt;
 				color: rgb(63, 63, 63);
 				letter-spacing: 0.05rem;
 			}
@@ -201,13 +207,13 @@
 				border-right: 0;
 				width: 100%;
 				margin-bottom: 3mm;
+				font-size: 11pt;
 			}
 			.page2 th,
 			.page2 td {
 				border-right: 1px solid gray;
 				text-align: center;
 				padding: 3mm;
-				padding-top: 4mm;
 			}
 			.page2 td:last-child {
 				border: none;
@@ -287,7 +293,7 @@
 				padding: 5mm;
 				letter-spacing: 0.05rem;
 				line-height: 1.6rem;
-				margin-top: 14mm;
+				margin-top: 10mm;
 			}
 			.page3 table {
 				border-collapse: collapse;
@@ -319,6 +325,7 @@
 			}
 			.page3 tr:nth-child(2) td {
 				padding: 3mm;
+				padding-bottom: 3.5mm;
 				line-height: 1.5rem;
 			}
 			.page3 tr:nth-child(2) td:nth-child(even) {
@@ -502,7 +509,7 @@
 					• <span class="underline bold500">중·고강도 신체활동 시간이란,</span> 하루 중 밤 시간의
 					수면시간을 제외한 '상당히 활동적인 시간'과
 					<br />
-					&ensp;&ensp;'매우 활동적인 시간'을 모두 합한 시간입니다.
+					&ensp;'매우 활동적인 시간'을 모두 합한 시간입니다.
 				</div>
 				<div id="graph" class="graph_exercise">
 					<div id="graph_header">일일 중·고강도 신체활동시간 리포트</div>
