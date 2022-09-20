@@ -4,6 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
 		<title>스마트워치 일일리포트</title>
 		<style>
 			* {
@@ -12,6 +18,7 @@
 			html,
 			body {
 				margin: 0;
+				font-family: 'Noto Sans KR', sans-serif;
 			}
 			.page_container {
 				width: 210mm;
@@ -120,16 +127,17 @@
 			}
 			#graph {
 				width: 100%;
-				height: 65mm;
+				min-height: 65mm;
 				border: 1px solid #ddd;
 				display: flex;
 				flex-direction: column;
-				margin: 3mm 0;
+				margin: 2.5mm 0;
 			}
 			#graph_header {
 				text-align: center;
 				font-weight: 500;
 				padding: 3mm 0;
+				padding-bottom: 1mm;
 				/* background-color: #eee; */
 			}
 			#graph_main {
@@ -139,12 +147,13 @@
 			}
 			#graph_y {
 				display: flex;
-				flex-direction: column-reverse;
+				flex-direction: column;
 				margin: 0 3mm;
-				margin-top: 4.5mm;
-				margin-bottom: 8.1mm;
+				margin-top: 4.4mm;
+				margin-bottom: 8.5mm;
 				justify-content: space-between;
 				align-items: center;
+				align-self: stretch;
 			}
 			#graph_chart {
 				display: flex;
@@ -161,7 +170,8 @@
 				align-items: center;
 			}
 			#graph_x {
-				padding: 3.1mm 0;
+				padding: 2.8mm 0;
+				padding-bottom: 2.9mm;
 				border-top: 1px solid #eee;
 				width: 100%;
 				letter-spacing: 0.05rem;
@@ -171,7 +181,7 @@
 				width: 9mm;
 			}
 			#graph_value {
-				margin-bottom: 2mm;
+				margin-bottom: 1.5mm;
 			}
 			.graph_exercise #graph_bar {
 				background-color: rgb(72, 108, 199);
@@ -185,9 +195,8 @@
 			.graph_caption {
 				background-color: rgb(212, 223, 252);
 				padding: 3mm 10mm;
-				padding-bottom: 2mm;
-				line-height: 6.5mm;
-				font-size: 11pt;
+				line-height: 6mm;
+				font-size: 10pt;
 				color: rgb(63, 63, 63);
 				letter-spacing: 0.05rem;
 			}
@@ -198,13 +207,13 @@
 				border-right: 0;
 				width: 100%;
 				margin-bottom: 3mm;
+				font-size: 11pt;
 			}
 			.page2 th,
 			.page2 td {
 				border-right: 1px solid gray;
 				text-align: center;
 				padding: 3mm;
-				padding-top: 4mm;
 			}
 			.page2 td:last-child {
 				border: none;
@@ -249,11 +258,10 @@
 				border-radius: 50%;
 				background: conic-gradient(
 					#9acc86 35deg,
-					#f48379 35deg,
+					#9acc86 180deg,
 					#f48379 180deg,
-					#fcf084 180deg,
-					#fcf084 325deg,
-					#9acc86 325deg
+					#f48379 360deg,
+					#9acc86 360deg
 				);
 			}
 			.chart_hidden {
@@ -285,7 +293,7 @@
 				padding: 5mm;
 				letter-spacing: 0.05rem;
 				line-height: 1.6rem;
-				margin-top: 14mm;
+				margin-top: 10mm;
 			}
 			.page3 table {
 				border-collapse: collapse;
@@ -317,6 +325,7 @@
 			}
 			.page3 tr:nth-child(2) td {
 				padding: 3mm;
+				padding-bottom: 3.5mm;
 				line-height: 1.5rem;
 			}
 			.page3 tr:nth-child(2) td:nth-child(even) {
@@ -337,17 +346,12 @@
 			.under {
 				width: 2mm;
 				height: 2mm;
-				background-color: #fcf084;
+				background-color: #f48379;
 			}
 			.exact {
 				width: 2mm;
 				height: 2mm;
 				background-color: #9acc86;
-			}
-			.over {
-				width: 2mm;
-				height: 2mm;
-				background-color: #f48379;
 			}
 			.state {
 				display: flex;
@@ -505,7 +509,7 @@
 					• <span class="underline bold500">중·고강도 신체활동 시간이란,</span> 하루 중 밤 시간의
 					수면시간을 제외한 '상당히 활동적인 시간'과
 					<br />
-					&ensp;&ensp;'매우 활동적인 시간'을 모두 합한 시간입니다.
+					&ensp;'매우 활동적인 시간'을 모두 합한 시간입니다.
 				</div>
 				<div id="graph" class="graph_exercise">
 					<div id="graph_header">일일 중·고강도 신체활동시간 리포트</div>
@@ -590,11 +594,9 @@
 							<div class="chart_pin"><img src="./page3/pin.svg" /></div>
 							<div class="state">
 								<div class="under"></div>
-								<div>부족</div>
+								<div>미충족</div>
 								<div class="exact"></div>
-								<div>적정</div>
-								<div class="over"></div>
-								<div>과다</div>
+								<div>충족</div>
 							</div>
 						</td>
 					</tr>
@@ -729,7 +731,7 @@
 		const profileData = {
 			name: '김파이',
 			school: '연세초등학교',
-			gender: '여',
+			gender: '여아',
 			date: '2022.01.31 ~ 2022.09.20',
 		};
 		const exerciseReport = [
@@ -837,7 +839,7 @@
 				(v) => (v.innerHTML = profileData.date),
 			);
 		}
-		function renderGraph(reportData, targetChart) {
+		function renderGraph(reportData, targetChart, profileData) {
 			// 제일 긴 시간 찾기
 			let deepCopy = [...reportData];
 			deepCopy.sort((a, b) => b.size - a.size);
@@ -862,12 +864,16 @@
 						graphY.push(['<div>', `${i + 1}`, '</div>'].join(''));
 					});
 			}
-			document.querySelector(`.${targetChart} #graph_y`).innerHTML = graphY.join('');
+			if (graphY.length > 11) {
+				const shorten = ['<div>0</div>', '<div>...</div>', ...graphY.slice(-8)];
+				graphY = [...shorten];
+			}
+			document.querySelector(`.${targetChart} #graph_y`).innerHTML = graphY.reverse().join('');
 
 			// graph_chart innerHTML 생성
 			let graphChart = [];
 			reportData.map((dayReport) => {
-				const barHeight = (dayReport.size / largest) * 9;
+				const barHeight = (dayReport.size / largest) * 9.3;
 				const valueHtml = ['<div id="graph_value">', `${dayReport.size}`, '</div>'];
 				const barHtml = [`<div id="graph_bar" style="height:${barHeight}rem"></div>`];
 				const xHtml = [`<div id="graph_x">${dayReport.day}일차</div>`];
@@ -883,41 +889,69 @@
 			let state;
 
 			if (reportData == exerciseReport) {
-				if (average >= 3) state = 'over';
-				else if (average >= 1) state = 'exact';
+				if (average >= 1) state = 'exact';
 				else state = 'less';
 			}
 			if (reportData == sleepReport) {
-				if (average > 11) state = 'over';
-				else if (average >= 9) state = 'exact';
+				if (average >= 9) state = 'exact';
 				else state = 'less';
 			}
 			if (reportData == walkReport) {
-				// 10000걸음 사이에서 12000걸음 사이
-				if (average > 12000) state = 'over';
-				else if (average >= 10000) state = 'exact';
-				else state = 'less';
+				// 성별에 따라 기준 상이
+				if (profileData.gender === '남아')
+					if (average >= 12000) state = 'exact';
+					else state = 'less';
+				if (profileData.gender === '여아')
+					if (average >= 10000) state = 'exact';
+					else state = 'less';
 			}
 
+			// 게이지 색 강조
+			// const gaugeColor = {
+			// 	exact: {
+			// 		exact: '#9acc86',
+			// 		less: '#fdd5d1',
+			// 	},
+			// 	less: {
+			// 		exact: '#dbfacf',
+			// 		less: '#f48379',
+			// 	},
+			// };
+			// const exactColor = gaugeColor[state].exact;
+			// const lessColor = gaugeColor[state].less;
+			// document.querySelector(
+			// 	`#${targetChart} .chart_bar`,
+			// ).style.background = `conic-gradient(${exactColor} 35deg, ${exactColor} 180deg, ${lessColor} 180deg, ${lessColor} 360deg, ${exactColor} 360deg)`;
+
 			// 게이지 렌더링
-			const deg = {
-				less: '-58deg',
-				exact: '0deg',
-				over: '58deg',
+			const max = {
+				chart_exercise: 2,
+				chart_sleep: 18,
+				chart_walk: {
+					남아: 24000,
+					여아: 20000,
+				},
 			};
+			let deg;
+			// 성별에 따라 기준 상이
+			if (reportData == walkReport)
+				deg = (average / max[targetChart][profileData.gender]) * 180 - 90;
+			else deg = (average / max[targetChart]) * 180 - 90;
+			// 게이지 하한선/상한선
+			if (deg < -90) deg = -90;
+			if (deg > 90) deg = 90;
 			document.querySelector(
 				`#${targetChart} > .chart_pin > img`,
-			).style.transform = `rotate(${deg[state]})`;
+			).style.transform = `rotate(${deg}deg)`;
 
 			// 충족 여부 렌더링
 			const status = {
-				less: '부족',
-				exact: '적정',
-				over: '과다',
+				less: '미충족',
+				exact: '충족',
 			};
 			document.querySelector(`#state_${targetChart.split('_')[1]}`).innerHTML = status[state];
 
-			console.log(state);
+			console.log(average + ' ' + state);
 		}
 
 		renderProfile(profileData);
@@ -926,6 +960,6 @@
 		renderGraph(walkReport, 'graph_walk');
 		renderChart(exerciseReport, 'chart_exercise');
 		renderChart(sleepReport, 'chart_sleep');
-		renderChart(walkReport, 'chart_walk');
+		renderChart(walkReport, 'chart_walk', profileData);
 	</script>
 </html>
