@@ -39,7 +39,7 @@ export const exerciseReport = [
 export const sleepReport = [
 	{
 		day: 1,
-		size: 0,
+		size: 9,
 	},
 	{
 		day: 2,
@@ -70,11 +70,11 @@ export const sleepReport = [
 export const walkReport = [
 	{
 		day: 1,
-		size: 25000,
+		size: 27500,
 	},
 	{
 		day: 2,
-		size: 9521,
+		size: 55000,
 	},
 	{
 		day: 3,

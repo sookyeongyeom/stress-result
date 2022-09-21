@@ -40,8 +40,15 @@ function renderGraph(reportData, targetChart, profileData) {
 				graphY.push(['<div>', `${i + 1}`, '</div>'].join(''));
 			});
 	}
-	if (graphY.length > 11) {
-		const shorten = ['<div>0</div>', '<div>...</div>', ...graphY.slice(-8)];
+	// 그래프 축약
+	if (graphY.length > 10) {
+		const shorten = [
+			...graphY.slice(0, 1),
+			'<div>≈</div>',
+			`<div>${largest / 2}</div>`,
+			'<div>≈</div>',
+			...graphY.slice(-1),
+		];
 		graphY = [...shorten];
 	}
 	document.querySelector(`.${targetChart} #graph_y`).innerHTML = graphY.reverse().join('');
