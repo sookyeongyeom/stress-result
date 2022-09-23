@@ -273,14 +273,13 @@ body {
 	background-color: rgb(248, 208, 132);
 	text-align: center;
 	padding: 3mm;
-	padding-top: 4mm;
 }
 .report_caution {
 	background-color: rgb(212, 223, 252);
 	padding: 5mm;
 	letter-spacing: 0.05rem;
 	line-height: 1.6rem;
-	margin-top: 10mm;
+	margin-top: 10.5mm;
 }
 .page3 table {
 	border-collapse: collapse;
@@ -364,7 +363,6 @@ body {
 	background-color: rgb(212, 223, 252);
 	text-align: center;
 	padding: 3mm;
-	padding-top: 4mm;
 }
 .page4 h3 {
 	border-left: 6px solid rgb(212, 223, 252);
@@ -384,6 +382,9 @@ body {
 	margin-top: 0.7rem;
 	margin-bottom: 2rem;
 }
+button {
+	display: none;
+}
 /* *************************** Media ************************** */
 @page {
 	size: A4;
@@ -401,5 +402,8 @@ body {
 		page-break-after: always;
 		/* 프린트 시 백그라운드 색상 적용 */
 		-webkit-print-color-adjust: exact;
+	}
+	button {
+		display: none;
 	}
 }
